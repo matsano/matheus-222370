@@ -1,7 +1,7 @@
 import os
 import requests
 
-orthanc_url = "http://localhost:8042/instances"
+orthanc_url = "http://orthanc:8042/instances"
 
 authentication = ('orthanc', 'orthanc')
 

@@ -76,11 +76,11 @@ def create_dicom_sr(dicom_image_path, json_results_path):
 
 def send_dicom_sr_to_pacs():
     
-    orthanc_url = "http://localhost:8042/instances"
+    orthanc_url = "http://orthanc:8042/instances"
     authentication = ('orthanc', 'orthanc')
 
     # Path to the directory with the DICOM SR files
-    dicom_sr_folder = "results_dicom_rs"
+    dicom_sr_folder = "results_dicom_sr"
 
     # Iterate over the DICOM SR files in the folder and upload them to Orthanc
     for dicom_file in os.listdir(dicom_sr_folder):
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         dicom_sr = create_dicom_sr(dicom_image_path, json_results_path)
         
         dicom_sr_path = os.path.splitext(os.path.basename(dicom_image_path))[0] + "_DICOM_SR.dcm"
-        dicom_sr.save_as(os.path.join('results_dicom_rs', dicom_sr_path))
+        dicom_sr.save_as(os.path.join('results_dicom_sr', dicom_sr_path))
         
         
     # Send the DICOM SR to the local PACS OrthanC
