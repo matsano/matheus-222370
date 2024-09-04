@@ -20,21 +20,21 @@ def create_dicom_sr(dicom_image_path, json_results_path):
     # Create a DICOM SR dataset
     dicom_sr = Dataset()
     
-    # Configurar os metadados do arquivo DICOM, identificando o tipo de dados presentes no arquivo DICOM
+    # Configure the DICOM file metadata, identifying the type of data present in the DICOM file
     dicom_sr.file_meta = FileMetaDataset()
     dicom_sr.file_meta.MediaStorageSOPClassUID = EnhancedSRStorage
     dicom_sr.file_meta.MediaStorageSOPInstanceUID = generate_uid()
     dicom_sr.file_meta.TransferSyntaxUID = ExplicitVRLittleEndian
     
-    # Um SOP Class é uma classe que define o tipo de dados e as operacoes que podem ser realizadas sobre esses dados.
-    # Logo, deve-se definir a SOP Class como Enhanced Structured Report
+    # A SOP Class is a class that defines the type of data and the operations that can be performed on that data.
+    # Therefore, you should define the SOP Class as Enhanced Structured Report
     dicom_sr.SOPClassUID = EnhancedSRStorage
     dicom_sr.SOPInstanceUID = generate_uid()
     
-    # Definir o conteúdo do arquivo DICOM sendo um Structured Report
+    # Define the content of the DICOM file as a Structured Report
     dicom_sr.Modality = "SR"
     
-    # Adicionar informacoes que identificam paciente, estudo e serie
+    # Add information identifying patient, study and series
     dicom_sr.PatientName = dicom_image.PatientName
     dicom_sr.PatientID = dicom_image.PatientID
     dicom_sr.StudyInstanceUID = dicom_image.StudyInstanceUID
@@ -43,27 +43,27 @@ def create_dicom_sr(dicom_image_path, json_results_path):
     # Add structured report content
     dicom_sr.ContentSequence = []
     for task, probability in json_results.items():
-        # Adicionar um novo objeto Dataset para armazenar os dados relacionados a uma doenca especifica
+        # Add a new Dataset object to store data related to a specific task
         item = Dataset()
         
-        # Definir a sequencia de codigo conceito para uma task
+        # Define the concept code sequence for a task
         item.ConceptNameCodeSequence = [Dataset()]
         item.ConceptNameCodeSequence[0].CodeValue = 'Task'
         item.ConceptNameCodeSequence[0].CodeMeaning = task
         
-        # Definir o sistema de codificacao como DCM, usado para codigos definidos especificamente no padrao DICOM,
-        # sem a necessidade de serem representados por um sistema de codificacao clinico padrao
+        # Define the coding system as DCM, used for codes defined specifically in the DICOM standard,
+        # without the need to be represented by a standard clinical coding system
         item.ConceptNameCodeSequence[0].CodingSchemeDesignator = 'DCM'
         
-        # Definir a unidade de medida para o valor medido
+        # Define the unit of measurement for the measured value
         item.MeasurementUnitsCodeSequence = [Dataset()]
         item.MeasurementUnitsCodeSequence[0].CodeValue = 'PERCENT'
         item.MeasurementUnitsCodeSequence[0].CodeMeaning = 'Percent'
         
-        # O sistema de codificacao eh o UCUM, usado para representar unidades de medida
+        # The coding system is UCUM, used to represent units of measurement
         item.MeasurementUnitsCodeSequence[0].CodingSchemeDesignator = 'UCUM'
         
-        # Armanzear a probabilidade correspondente a task
+        # Store the probability corresponding to the task
         item.ValueType = 'NUM'
         item.NumericValue = probability * 100
         
