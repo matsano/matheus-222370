@@ -73,4 +73,4 @@ O quarto e o último exercício foi o mais desafiador para mim, pois não conhec
 
 Essa atividade me proporcionou a oportunidade de explorar tipos de dados médicos com os quais eu ainda não havia trabalhado, de interagir com sistemas de armazenamento usados em ambientes médicos e de conhecer um modelo de IA voltado para imagens de raio X. Isso aumentou meu interesse pelo tema da iniciação científica, pois busco me aprofundar justamente no campo da pesquisa biomédica e, assim, enfrentar os desafios que surgirão ao longo dessa experiência, como os que já encontrei nesta atividade.
 
-Obrigado pela oportunidade de participar nessa segunda parte do processo.
+Obrigado pela oportunidade de participar dessa segunda parte do processo.
