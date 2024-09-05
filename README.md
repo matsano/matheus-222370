@@ -22,7 +22,7 @@ cd matheus-222370
 
 ### 2) Dockerfile
 
-Para executar todas as tarefas exigidas pelo desafio deve-se rodar os seguintes comandos no terminal. Tanto os arquivos DICOM quanto os arquivos DICOM_SR poderão ser encontrados em http://localhost:8042 depois da execução dos comandos.
+Para executar todas as tarefas exigidas pelo desafio deve-se rodar os seguintes comandos no terminal. Tanto os arquivos DICOM quanto os arquivos DICOM_SR poderão ser encontrados em http://localhost:8042 depois da execução dos comandos. Tanto o login e quanto a senha para acessar o localhost é **orthanc**.
 
 - Obter imagem do Docker Hub
     ```bash
@@ -44,7 +44,9 @@ Para executar todas as tarefas exigidas pelo desafio deve-se rodar os seguintes 
     docker build -t python-scripts-test .
     ```
 
-- Criar e iniciar um contêiner, executando todos os códigos implementados e realizando todas as tarefas solicitadas: envio dos arquivos DICOM, a classificação de achados e o envio dos arquivos DICOM_SR. Pode demorar uns 10 segundos para executar todos os códigos e os arquivos DICOM SR serem visíveis no http://localhost:8042
+- Criar e iniciar um contêiner, executando todos os códigos implementados e realizando todas as tarefas solicitadas: envio dos arquivos DICOM, a classificação de achados e o envio dos arquivos DICOM_SR.
+
+    Pode demorar em torno de **30 segundos** para executar todos os códigos e os arquivos DICOM SR serem visíveis no http://localhost:8042
     ```bash
     docker run -d --name python-scripts --network my-network python-scripts-test
     ```
